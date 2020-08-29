@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="praticeApi.jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="praticeApi.jar">
+      <element id="module-output" name="praticeApi" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/selenium-server-standalone-3.141.59.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
