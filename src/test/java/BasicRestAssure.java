@@ -7,7 +7,6 @@ import io.restassured.http.Headers;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.ResponseSpecification;
-import org.hamcrest.Matcher;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -230,5 +229,43 @@ public class BasicRestAssure {
         given().relaxedHTTPSValidation("TLS").when().get("https://jsonplaceholder.typicode.com").then().assertThat().statusCode(200);
     }
 
+    public void premtiveAuthentication(){
+        given().auth().preemptive().basic("username","password").when().
+                get("https://jsonplaceholder.typicode.com").then().assertThat().statusCode(200);
+
+    }
+
+    /*
+    * minimi-um two request, response required to process a call
+    * Restassured will not send a credential to server intially. when server explicitly asked for it then only it will give
+    * */
+
+    public void BasicAuthentication(){
+        given().auth().basic("username","password").when().
+                get("https://jsonplaceholder.typicode.com").then().assertThat().statusCode(200);
+
+    }
+
+    /*
+     * Autenticate for All Call
+     * */
+
+    public void AuthenticationAllcall(){
+        authentication = basic("username","password");
+        given().
+                get("https://jsonplaceholder.typicode.com").then().assertThat().statusCode(200);
+
+    }
+
+    /*
+    * Type3 : Challenged Digest Authentication (minimum two request , response combination required)
+    * Digest Authentication is more secure than Basic Authorization as it involves new Digestion key
+    * */
+
+    public void DigestKey(){
+        given().auth().digest("username","password").when().
+                get("https://jsonplaceholder.typicode.com").then().assertThat().statusCode(200);
+
+    }
 
 }
