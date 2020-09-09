@@ -34,11 +34,14 @@ public ResponseSpecBuilder responseSpecBuilder =null;
 
         requestSpecBuilder = new RequestSpecBuilder();
         responseSpecBuilder = new ResponseSpecBuilder();
-        requestSpecBuilder.setBaseUri("https://the-internet.herokuapp.com");
 
         readFromPropertyFiles();
         System.out.println(">>>>>User Directory >>>>>>>>>"+ System.getProperty("user.dir"));
         setSchemaDir();
+        String baseUrl = internalPropertie.getProperty(Base.HTTP_PRPERTY_BASE_URL);
+        System.out.println("The Base Url is <<<<<>>>>>" + baseUrl);
+        requestSpecBuilder.setBaseUri(baseUrl);
+
 
     };
 

@@ -23,7 +23,7 @@ public class UploadFile extends ApplicationBase {
     @Test
     public void uploadDocument(){
         Response response = getSampleData("PaymentsReciept.doc","generate.json");
-        System.out.println(response.prettyPrint());
+        System.out.println("REsponse is >>>>>>>>>>>>>>>>>>>>" + response.asString());
         Assert.assertEquals(response.getStatusCode(),200);
 
     }
