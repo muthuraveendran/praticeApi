@@ -17,7 +17,12 @@ public class ApplicationBase extends ServiceTestBase {
 
     public ApplicationBase() {
         super(Constant.PROPERTIES_FILE_DOCUMENT);
-    System.out.println("Inside the Application Base >>>>>>>>>>>>>>>>>>>> ");
+//        requestSpecBuilder.addHeader("Channel-Id","1061");
+        requestSpecBuilder.addHeader("Cache-Control","max-age=0");
+        requestSpecBuilder.addHeader("Connection","keep-alive");
+        requestSpec = requestSpecBuilder.build();
+       responseSpec = responseSpecBuilder.build();
+        System.out.println("Inside the Application Base >>>>>>>>>>>>>>>>>>>> ");
     };
 
     public Response getSampleData(String FileName, String jsonFile) {
@@ -25,8 +30,8 @@ public class ApplicationBase extends ServiceTestBase {
         String sampleData = getSamplData(jsonFile);
         System.out.println("<<<<<Json Data e>>>>>>>" + sampleData);
 
-//        String URL = String.format("EndPoint");
-        return uploadDocumentPostRequest(FileName , docFile);
+        String URL = String.format(Constant.UploadUrl);
+        return uploadDocumentPostRequest(requestSpec,responseSpec, FileName , docFile, URL);
 
 
 //        System.out.println("<<<<<docFiledocFiledocFile>>>>>>>" + docFile);

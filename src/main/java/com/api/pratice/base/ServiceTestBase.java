@@ -2,7 +2,11 @@ package com.api.pratice.base;
 
 
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -14,6 +18,10 @@ protected Properties internalPropertie = null;
 public String configDir = null;
 public String   newEnv = null;
 public String   shemaDir = null;
+public RequestSpecification requestSpec;
+public RequestSpecBuilder requestSpecBuilder =null;
+public ResponseSpecification responseSpec;
+public ResponseSpecBuilder responseSpecBuilder =null;
 
 
     public ServiceTestBase(String propertiesFile){
@@ -23,6 +31,11 @@ public String   shemaDir = null;
         System.out.println(">>>>>>>>>>>Inside the service base >>>>>>>>>>>>>>>>>" + a);
         configDir = "/" + a;
         System.out.println(">>>>>>>>>>>getting the property file>>>>>>>>>>>>>>>>>" + this.propertiesFile);
+
+        requestSpecBuilder = new RequestSpecBuilder();
+        responseSpecBuilder = new ResponseSpecBuilder();
+        requestSpecBuilder.setBaseUri("https://the-internet.herokuapp.com");
+
         readFromPropertyFiles();
         System.out.println(">>>>>User Directory >>>>>>>>>"+ System.getProperty("user.dir"));
         setSchemaDir();
@@ -39,14 +52,6 @@ public String   shemaDir = null;
 //        internalPropertie =  InternalConfigManager.getAllConfig(configPath);
 //         internalPropertie.putAll(InternalConfigManager.getAllConfig(configPath));
 
-
-//        String YoutubeUrl = internalPropertie.getProperty(Base.HTTP_PRPERTY_BASE_URL);
-
-//        String YoutubeUrl  = internalPropertie.getProperty(configPath);
-
-//        System.out.println(" internalPropertie.putAll(InternalConfigManager.getAllConfig(configPath))." + YoutubeUrl);
-
-
     }
 
     protected void setSchemaDir() {
@@ -59,9 +64,11 @@ public String   shemaDir = null;
     }
 
 
-    protected Response uploadDocumentPostRequest(String filename, InputStream doc) {
-      Response responseApp =  RestAssured.given().multiPart("file",filename,doc).
-                post("https://the-internet.herokuapp.com/upload").thenReturn();
+    protected Response uploadDocumentPostRequest(RequestSpecification reqSpec, ResponseSpecification resSpec , String filename, InputStream doc , String postURI) {
+      Response responseApp =  RestAssured.given().log().all().spec(reqSpec)
+        .multiPart("file",filename,doc).
+        post(postURI).
+                      then().spec(resSpec).extract().response();
       return responseApp;
     };
 
