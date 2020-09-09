@@ -1,0 +1,6 @@
+Full name: <<receipts.receipt.client_info.full_name>>
+State: <<receipts.receipt.client_info.address.state>>
+Loan Rule: <<receipts.receipt.loan_info.loan_rules>>
+Client-Id: <<receipts.receipt.loan_info.client_id>>
+Preferred Language: <<receipts.loan_info.preferred_language>>
+Referral code: <<receipts.receipt.client_info.referral_code>>

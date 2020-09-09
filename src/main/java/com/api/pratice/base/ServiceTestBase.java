@@ -1,6 +1,10 @@
 package com.api.pratice.base;
 
 
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+import java.io.InputStream;
 import java.util.Properties;
 
 public class ServiceTestBase {
@@ -31,9 +35,11 @@ public String   shemaDir = null;
        System.out.println(">>>>>>>The internal Properties >>>>>>>>>>." + internalPropertie);
         String baseUrl = internalPropertie.getProperty(Base.HTTP_PRPERTY_BASE_URL);
 
-        String configPath = configDir + propertiesFile;
-        internalPropertie =  InternalConfigManager.getAllConfig(configPath);
-         internalPropertie.putAll(InternalConfigManager.getAllConfig(configPath));
+//        String configPath = configDir + propertiesFile;
+//        internalPropertie =  InternalConfigManager.getAllConfig(configPath);
+//         internalPropertie.putAll(InternalConfigManager.getAllConfig(configPath));
+
+
 //        String YoutubeUrl = internalPropertie.getProperty(Base.HTTP_PRPERTY_BASE_URL);
 
 //        String YoutubeUrl  = internalPropertie.getProperty(configPath);
@@ -44,11 +50,24 @@ public String   shemaDir = null;
     }
 
     protected void setSchemaDir() {
-        System.out.println(">>>>>>>>>internal properties >>>>>>>>>>>>>>>>>>>>>>" + internalPropertie);
         shemaDir = internalPropertie.getProperty(Base.SHEMA_BASE);
+        System.out.println(">>>>>>>>>internal properties >>>>>>>>>>>>>>>>>>>>>>" + shemaDir);
     }
 
     public void add() {
         System.out.println("I am in add Function >>>>>>>>>>>>>>>");
     }
+
+
+    protected Response uploadDocumentPostRequest(String filename, InputStream doc) {
+      Response responseApp =  RestAssured.given().multiPart("file",filename,doc).
+                post("https://the-internet.herokuapp.com/upload").thenReturn();
+      return responseApp;
+    };
+
+
 }
+
+
+
+
