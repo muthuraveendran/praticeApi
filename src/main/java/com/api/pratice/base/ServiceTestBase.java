@@ -7,6 +7,7 @@ import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
+import org.json.simple.JSONObject;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -73,6 +74,24 @@ public ResponseSpecBuilder responseSpecBuilder =null;
         post(postURI).
                       then().spec(resSpec).extract().response();
       return responseApp;
+    };
+//String filename, InputStream doc ,
+    protected Response PostData(RequestSpecification reqSpec, ResponseSpecification resSpec , String data,  String postURI) {
+        System.out.println("Data>>>>>>>>>>>>>>>>>>>>>>>>>>." + data);
+        Response responseApp =  RestAssured.given().log().all().spec(reqSpec).
+        body( data ).
+                 post(postURI);
+//                .then().spec(resSpec).extract().response();
+        return responseApp;
+    };
+
+    protected Response PostDataJson(RequestSpecification reqSpec, ResponseSpecification resSpec , String data, String postURI) {
+        System.out.println("Data>>>>>>>>>>>>>>>>>>>>>>>>>>." + data);
+        Response responseApp =  RestAssured.given().log().all().spec(reqSpec).
+                body( data ).
+                post(postURI);
+//                .then().spec(resSpec).extract().response();
+        return responseApp;
     };
 
 

@@ -6,12 +6,12 @@ import java.util.List;
 
 public class DeClass {
 
-//    @Test
+   @Test
     public  void DeserTest() {
         RestAssured.baseURI = "https://reqres.in/api/users?page=2";
 
         ListUserPojo pojo = RestAssured.given().when().get().as(ListUserPojo.class);
-//        System.out.println(">>>>>>>>>POJO>>>>>>>>>" + pojo.toString());
+        System.out.println(">>>>>>>>>POJO>>>>>>>>>" + pojo.toString());
 //        System.out.println("<<<<<<get the specify POJO Cass>>>>>>>>" + pojo.getData());
 
         List<ListDataPojo> list = pojo.getData();

@@ -7,15 +7,15 @@ import org.testng.annotations.Test;
 
 public class Post_Put_Delete {
 
-//    @Test
+   @Test
     public void test1() {
        RequestSpecification request  = RestAssured.given();
        request.header("Content-Type","application/json");
 
        JSONObject json = new JSONObject();
-       json.put("id","3");
-       json.put("title","Manager");
-       json.put("author","Melbin Bose");
+//       json.put("id","3");
+       json.put("title","DEVELOPER");
+       json.put("author","Bose");
 
        request.body(json.toJSONString());
 
@@ -43,18 +43,18 @@ public class Post_Put_Delete {
         request.header("Content-Type","application/json");
 
         JSONObject json = new JSONObject();
-        json.put("id","2");
-        json.put("title","Developer");
-        json.put("author","Anand");
+        json.put("id","");
+        json.put("language","Developer");
+        json.put("state","Anand");
 
         request.body(json.toJSONString());
 
-        Response response = request.put("http://localhost:3000/posts/2");
+        Response response = request.post("http://localhost:3000/location");
 
         int code = response.getStatusCode();
         System.out.println("<<<<<<Code>>>>>" + code);
 
-        Assert.assertEquals(code,200);
+        Assert.assertEquals(code,201);
 
     };
 
