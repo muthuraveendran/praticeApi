@@ -11,5 +11,6 @@ public class start extends ApplicationBase {
     public static void main(String[] args) {
         start s = new start();
         s.addedValue();
+        System.out.println("<<<<<<<< User directory >>>>>>>>>"+ System.getProperty("user.dir"));
     }
 }

@@ -54,7 +54,6 @@ public class ApplicationBase extends ServiceTestBase {
     private TemplateInfo   getTemplateInfoRequest(String filename) {
         String fileDir =  shemaDir+"/Documents/"+  filename ;
         System.out.println("<<<<<<<<fileDdir>>>>>>" + fileDir);
-        System.out.println("<<<<<<<<fileDir>>>>>>>" + fileDir);
         TemplateInfo request = gson.fromJson(SchemaJsonReader.getReader(fileDir),TemplateInfo.class);
         return request;
     };
