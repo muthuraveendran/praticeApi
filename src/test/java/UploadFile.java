@@ -11,20 +11,20 @@ public class UploadFile extends ApplicationBase {
 
     private String SampleDataFile ="generate.json";
   public String name =   RandomStringUtils.randomAlphabetic(20);
-    public static void main(String[] args) {
-
-//        File file = new File("C:/Users/Ideas2it/Downloads/students.jpg");
-        String uploadFile =  System.getProperty("user.dir");
-       String url =  uploadFile +"\\src\\main\\resources\\schema\\Documents\\PaymentsReciept.doc";
-                File file = new File(url);
-        System.out.println("The upload file >>>>>" + uploadFile);
-       Response response = RestAssured.given().multiPart("file",file,"multipart/form-data").
-              post("https://the-internet.herokuapp.com/upload").thenReturn();
-
-       System.out.println(response.prettyPrint());
-
-
-    }
+//    public static void main(String[] args) {
+//
+////        File file = new File("C:/Users/Ideas2it/Downloads/students.jpg");
+//        String uploadFile =  System.getProperty("user.dir");
+//       String url =  uploadFile +"\\src\\main\\resources\\schema\\Documents\\PaymentsReciept.doc";
+//                File file = new File(url);
+//        System.out.println("The upload file >>>>>" + uploadFile);
+//       Response response = RestAssured.given().multiPart("file",file,"multipart/form-data").
+//              post("https://the-internet.herokuapp.com/upload").thenReturn();
+//
+//       System.out.println(response.prettyPrint());
+//
+//
+//    }
 
 //    @Test
     public void uploadDocument(){
@@ -42,7 +42,7 @@ public class UploadFile extends ApplicationBase {
     }
 
     //Upload the file with JSon
-   // @Test
+    @Test
     public void CreateDataWithJson(){
         Response response =   EnterJsonData(SampleDataFile ,name);
         System.out.println("REsponse is >>>>>>>>>>>>>>>>>>>>" + response.asString());

@@ -52,9 +52,9 @@ public ResponseSpecBuilder responseSpecBuilder =null;
        System.out.println(">>>>>>>The internal Properties >>>>>>>>>>." + internalPropertie);
         String baseUrl = internalPropertie.getProperty(Base.HTTP_PRPERTY_BASE_URL);
 
-        String configPath = configDir + propertiesFile;
-        internalPropertie =  InternalConfigManager.getAllConfig(configPath);
-         internalPropertie.putAll(InternalConfigManager.getAllConfig(configPath));
+//        String configPath = configDir + propertiesFile;
+//        internalPropertie =  InternalConfigManager.getAllConfig(configPath);
+//         internalPropertie.putAll(InternalConfigManager.getAllConfig(configPath));
 
     }
 
